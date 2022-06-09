@@ -1,2 +1,31 @@
-package PACKAGE_NAME;public class ReducePractice {
+import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.function.BinaryOperator;
+
+class CompareString implements BinaryOperator<String>{
+    @Override
+    public String apply(String s1, String s2) {
+        if (s1.getBytes().length >=s2.getBytes().length)
+            return s1;
+        else return s2;
+    }
 }
+
+public class ReducePractice {
+    public static void main(String[] args) {
+        String[] greetings = {"안녕하세요~~~~~", "hello", "Good morning", "반갑습니다."};
+
+
+
+        //binaryOperator 2개 매개변수에 의해 구현딘 식
+        System.out.println(Arrays.stream(greetings).reduce("", (s1, s2) -> {
+                    if (s1.getBytes().length >=s2.getBytes().length)
+                    return s1;
+        else return s2; }
+        ));
+
+        System.out.println(Arrays.stream(greetings).reduce("", new CompareString()));
+    }
+}
+
